@@ -1,9 +1,12 @@
 const express = require("express");
 require('./connection')
 const user = require("./Middleware/user");
+const cors = require("cors")
 const app = express();
 const port = 3000
 
+app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use("/user",user)
 app.get("/",(req,res)=>{
