@@ -3,6 +3,7 @@ const user = express();
 const bcrypt = require("bcrypt")
 const userModel = require("../Models/userModel");
 const generateToken = require("./generateToken");
+const jwt = require("jsonwebtoken")
 
 
 user.post("/signup",async(req,res)=>{
@@ -66,6 +67,35 @@ user.post("/login",async(req,res)=>{
     else{
         res.send({message:"User Not Found"})
     }
+})
+
+user.post("/jwtverify",(req,res)=>{
+    const {token} = req.body;
+
+    if (!token) {
+        return res.json({ 
+            message: "Token is required", 
+            valid: false 
+        });
+    }
+
+    jwt.verify(token, "secret", (err, decoded) =>{
+        if (err) {
+            return res.json({ 
+                message: "Invalid or expired token", 
+                valid: false 
+            });
+        }
+
+        else{
+            const {id} = decoded;
+            return res.status(200).json({ 
+                message: "Token is valid", 
+                valid: true,
+                id
+            });
+        }
+    })
 })
 
 module.exports = user

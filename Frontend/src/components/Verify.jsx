@@ -1,10 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Chat from './Home/Chat';
 
 const Verify = () => {
   const navigate = useNavigate();
   const handleVerify = ()=>{
-    
+    navigate("/chats")
   }
 
   return (
