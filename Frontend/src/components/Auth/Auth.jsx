@@ -92,12 +92,10 @@ const Auth = () => {
         theme: "light",
         });
 
-
-
       if(x=="Logged In Successfully"){
         localStorage.setItem("userInfo",JSON.stringify(response.data))
         setTimeout(() => {
-          navigate("/verify")
+          navigate("/chats")
         }, 3000);
       }
     })

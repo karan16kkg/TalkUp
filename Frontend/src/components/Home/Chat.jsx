@@ -6,12 +6,9 @@ import { ChatState } from '../../Context/ChatProvider'
 const Chat = () => {
     const { user } = ChatState();
     return (
-        <div>
-            {user && <SideDrawer />}
-            <div className='flex border-2 border-red-600'>
-                {user && <MyChats />}
-                {user && <ChatBox />}
-            </div>
+        <div className='bg-teal-50 h-screen flex'>
+            {user && <MyChats />}
+            {user && <ChatBox />}
         </div>
     )
 }

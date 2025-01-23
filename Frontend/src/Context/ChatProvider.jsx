@@ -5,7 +5,9 @@ import axios from "axios";
 const ChatContext = createContext();
 
 const ChatProvider = ({ children }) => {
-    const [user, setUser] = useState(); // Initialize state
+    const [user, setUser] = useState();
+    const [selectedChat, setselectedChat] = useState()
+    const [chats, setchats] = useState([])
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,7 +22,6 @@ const ChatProvider = ({ children }) => {
                 const token = userInfo.token;
                 try {
                     const response = await axios.post("http://localhost:3000/user/jwtverify", {token});
-                    console.log(response.data);
                     if(response.data.message === "Token is valid"){
                         navigate("/chats")
                     }
@@ -40,7 +41,7 @@ const ChatProvider = ({ children }) => {
     
 
     return (
-        <ChatContext.Provider value={{ user, setUser }}>
+        <ChatContext.Provider value={{ user, setUser,selectedChat,setselectedChat,chats,setchats }}>
             {children}
         </ChatContext.Provider>
     );

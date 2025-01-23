@@ -1,6 +1,5 @@
 const express = require("express");
 const User = require("../Models/userModel");
-const protect = require("./auth");
 const searchUser = express();
 
 searchUser.get("/",async(req,res)=>{
