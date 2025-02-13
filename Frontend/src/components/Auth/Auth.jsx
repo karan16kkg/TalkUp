@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ChatState } from '../../Context/ChatProvider';
 
 
 const Auth = () => {
+  const {user,setUser} = ChatState()
   const imgRef = useRef();
   const passRef = useRef();
   const [current, setcurrent] = useState("Login")
@@ -94,6 +96,7 @@ const Auth = () => {
 
       if(x=="Logged In Successfully"){
         localStorage.setItem("userInfo",JSON.stringify(response.data))
+        setUser(response.data);
         setTimeout(() => {
           navigate("/chats")
         }, 3000);

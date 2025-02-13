@@ -1,0 +1,29 @@
+.custom{
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+@media (max-width: 480px) {
+    .custom{
+      height:75% ;
+    }
+}
+
+@media (max-width: 768px) {
+    .custom{
+      height: 90%;
+    }
+}
+
+@media (max-width: 1430px) {
+    .custom{
+      height: 80%;
+    }
+}
+
+@media (min-width: 1440px) {
+    .custom{
+      height: 68%;
+    }
+  }
+  
