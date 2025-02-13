@@ -23,7 +23,7 @@ const MyChats = () => {
 
   const handleAccessChat = async (userId) => {
     try {
-      await axios.post("http://localhost:3000/createChat/accessChat", { userId, currentId: user._id })
+      await axios.post("https://chat-room-utqc.onrender.com/createChat/accessChat", { userId, currentId: user._id })
         .then((response) => {
           if (!chats.find((c) =>
             c._id === response.data._id))
@@ -55,7 +55,7 @@ const MyChats = () => {
       }
   
       try {
-        const response = await axios.get(`http://localhost:3000/search?id=${user._id}&search=${search}`);
+        const response = await axios.get(`https://chat-room-utqc.onrender.com/search?id=${user._id}&search=${search}`);
         setsearchResult(response.data);
       } catch (error) {
         toast(error.message || "Error fetching search results", {
@@ -93,7 +93,7 @@ const MyChats = () => {
 
   //   else {
   //     try {
-  //       await axios.get(`http://localhost:3000/search?id=${user._id}&search=${search}`)
+  //       await axios.get(`https://chat-room-utqc.onrender.com/search?id=${user._id}&search=${search}`)
   //         .then((response) => {
   //           setsearchResult(response.data);
   //           // console.log(response.data)
@@ -116,7 +116,7 @@ const MyChats = () => {
 
   const fetchChats = async () => {
     try {
-      await axios.get(`http://localhost:3000/createChat/fetchChats?id=${user._id}`)
+      await axios.get(`https://chat-room-utqc.onrender.com/createChat/fetchChats?id=${user._id}`)
         .then((response) => {
           setchats(response.data);
         })

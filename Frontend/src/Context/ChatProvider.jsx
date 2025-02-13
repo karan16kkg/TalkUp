@@ -21,7 +21,7 @@ const ChatProvider = ({ children }) => {
             } else {
                 const token = userInfo.token;
                 try {
-                    const response = await axios.post("http://localhost:3000/user/jwtverify", {token});
+                    const response = await axios.post("https://chat-room-utqc.onrender.com/user/jwtverify", {token});
                     if(response.data.message === "Token is valid"){
                         navigate("/chats")
                     }

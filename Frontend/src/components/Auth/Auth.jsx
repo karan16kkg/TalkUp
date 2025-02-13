@@ -21,7 +21,7 @@ const Auth = () => {
   const handleRegister = ()=>{
 
     if(form.password.length>3 && form.email.includes("@gmail.com") && form.name.length>0){
-      axios.post("http://localhost:3000/user/signup",form)
+      axios.post("https://chat-room-utqc.onrender.com/user/signup",form)
       .then((response)=>{
         let x = response.data.message;
         toast(x , {
@@ -79,7 +79,7 @@ const Auth = () => {
 
   const navigate = useNavigate()
   const handleLogin = ()=>{
-    axios.post("http://localhost:3000/user/login",form)
+    axios.post("https://chat-room-utqc.onrender.com/user/login",form)
     .then((response)=>{
       console.log(response);
       let x = response.data.message;
