@@ -57,7 +57,7 @@ user.post("/login",async(req,res)=>{
                 _id : userExists._id,
                 name:userExists.name,
                 email:userExists.email,
-                image:userExists.pic,
+                pic:userExists.pic,
                 token:generateToken(userExists._id)
             })
         }
