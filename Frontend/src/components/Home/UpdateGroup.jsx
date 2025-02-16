@@ -180,12 +180,12 @@ const UpdateGroup = ({ fetchAgain, setfetchAgain, onClose }) => {
             <ToastContainer />
             <div className='fixed inset-0 bg-black opacity-80 flex justify-center items-center'>
                 <div className='bg-white w-5/6 md:w-2/3 lg:w-1/3 rounded-lg p-6 relative'>
-                    <button className='absolute top-2 right-3 text-3xl' onClick={onClose}>X</button>
+                    <button className='absolute top-2 right-3 text-3xl text-gray-600 hover:text-gray-800' onClick={onClose}> ✕ </button>
                     <div className='flex flex-col items-center mt-5'>
                         <h1 className='text-4xl'>{selectedChat.chatName}</h1>
                         <div className='style mt-6 flex gap-5 w-full justify-center'>
                             {selectedChat.users.map((user, index) => (
-                                <div key={index} className='flex pl-3 pr-5 py-2 mt-2 bg-teal-100 rounded-xl items-center relative' onClick={() => { handleRemove(user) }}>
+                                <div key={index} className='flex pl-3 pr-5 py-2 mt-2 bg-teal-100 rounded-xl items-center relative'>
                                     {user.name}
                                     <span className='absolute right-1 text-red-500 font-bold text-xl cursor-pointer' onClick={() => { handleRemove(user) }}>x</span>
                                 </div>

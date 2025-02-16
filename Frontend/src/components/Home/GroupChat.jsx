@@ -140,7 +140,7 @@ const GroupChat = ({onClose}) => {
           <ToastContainer />
     <div className='fixed inset-0 flex bg-opacity-0 z-50'>
         <div className='absolute w-full md:w-1/3 lg:w-1/3 h-screen bg-teal-50'>
-            <button className="absolute top-1 right-3 text-3xl" onClick={onClose}> ✕ </button>
+            <button className="absolute top-1 right-3 text-3xl text-gray-600 hover:text-gray-800" onClick={onClose}> ✕ </button>
             <h1 className="text-4xl mt-4 mb-6 flex justify-center">Create Group</h1>
             <div className='flex flex-col gap-4 items-center px-5'>
                 <input value={groupName} className='border-2 border-teal-300 w-full h-12 outline-none px-3 text-2xl' placeholder='Group Name' type="text" name="name" onChange={handleGroupName} />
