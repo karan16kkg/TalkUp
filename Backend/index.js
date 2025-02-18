@@ -4,6 +4,7 @@ const user = require("./Middleware/user");
 const cors = require("cors");
 const searchUser = require("./Middleware/searchUser");
 const accessChat = require("./Middleware/chatController");
+const message = require("./Middleware/message");
 const app = express();
 const port = 3000
 
@@ -13,6 +14,7 @@ app.use(express.urlencoded({extended:false}));
 app.use("/user",user)
 app.use("/search",searchUser);
 app.use("/createChat",accessChat)
+app.use("/message",message)
 // app.get("/",(req,res)=>{
 //     res.send("Hello");
 // })
