@@ -8,7 +8,7 @@ import { getImage, getSender } from "../../config/ChatLogics";
 import "./MyChats.css"
 import GroupChat from "./GroupChat";
 
-const MyChats = ({fetchAgain }) => {
+const MyChats = ({ fetchAgain }) => {
   const { user, selectedChat, setselectedChat, chats, setchats } = ChatState();
   const [showProfile, setShowProfile] = useState(false);
   const [search, setsearch] = useState("")
@@ -22,6 +22,8 @@ const MyChats = ({fetchAgain }) => {
   const handleSearch = (e) => {
     setsearch(e.target.value)
   }
+
+
 
   const handleAccessChat = async (userId) => {
     try {
@@ -77,43 +79,6 @@ const MyChats = ({fetchAgain }) => {
 
     return () => clearTimeout(debounceTimeout);
   }, [search]);
-
-  // const handleSearchClick = async () => {
-  //   if (!search) {
-  //     toast("Please Enter something in search", {
-  //       position: "top-right",
-  //       autoClose: 2000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "light",
-  //     });
-  //   }
-
-  //   else {
-  //     try {
-  //       await axios.get(`https://chat-room-utqc.onrender.com/search?id=${user._id}&search=${search}`)
-  //         .then((response) => {
-  //           setsearchResult(response.data);
-  //           // console.log(response.data)
-  //         })
-  //     }
-  //     catch (error) {
-  //       toast(error, {
-  //         position: "top-right",
-  //         autoClose: 2000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "light",
-  //       });
-  //     }
-  //   }
-  // }
 
   const fetchChats = async () => {
     try {
@@ -178,7 +143,7 @@ const MyChats = ({fetchAgain }) => {
           </div>
         </div>
 
-        <div className="px-3">
+        <div className="px-3 ">
           {!search ? (
             <div className="text-center mt-5">
               <div className="italic text-4xl text-teal-700 flex justify-start pl-3 mb-2">
@@ -186,7 +151,7 @@ const MyChats = ({fetchAgain }) => {
               </div>
 
               <div className="custom h-[60vh] md:h-[74vh] lg:h-[57vh]">
-                {chats ? chats.map((chat, idx) => (
+                {chats && chats.length>0 ? chats.map((chat, idx) => (
                   <div key={idx} className={`flex py-3 px-5 gap-3 mb-3 items-center rounded-xl cursor-pointer hover:bg-teal-200 hover:mx-1 ${selectedChat === chat ? 'bg-teal-300' : 'bg-teal-100'}`} onClick={() => setselectedChat(chat)}>
                     <div className="">
                       {!chat.isGroupChat ? <img className=" h-14 rounded-full" src={getImage(user, chat.users)}></img> : <img className="h-14 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"></img>}
@@ -198,27 +163,30 @@ const MyChats = ({fetchAgain }) => {
                   </div>
 
                 ))
-                  : <div>No Chats</div>}
+                  : (chats.length === 0 && <div className="flex justify-center items-center h-full text-3xl">No Chats</div>)}
               </div>
             </div>
 
           ) : (
-            searchResult.map((user, index) => (
-              <div
-                key={index}
-                className="flex py-3 px-5 gap-3 mt-3 bg-teal-100 rounded-xl cursor-pointer hover:bg-teal-200 hover:mx-1 items-center"
-                onClick={() => handleAccessChat(user._id)}
-              >
-                <img className="h-12 rounded-full" src={user.pic} alt="" />
-                <div>
-                  <span className="text-2xl">{user.name}</span>
-                  <br />
-                  <span className="font-bold">Email:</span>
-                  <span className="">{user.email}</span>
+            <div className="custom h-[65vh] md:h-[80vh] lg:h-[62vh]">
+              {searchResult.map((user, index) => (
+                <div
+                  key={index}
+                  className="flex py-3 px-5 gap-3 mt-3 bg-teal-100 rounded-xl cursor-pointer hover:bg-teal-200 hover:mx-1 items-center"
+                  onClick={() => handleAccessChat(user._id)}
+                >
+                  <img className="h-12 rounded-full" src={user.pic} alt="" />
+                  <div>
+                    <span className="text-2xl">{user.name}</span>
+                    {/* <br />
+                    <span className="font-bold">Email:</span>
+                    <span className="">{user.email}</span> */}
+                  </div>
                 </div>
-              </div>
-            ))
+              ))}
+            </div>
           )}
+
 
         </div>
 

@@ -12,7 +12,8 @@ const ChatBox = ({ fetchAgain, setfetchAgain }) => {
   const [showProfile, setShowProfile] = useState(false)
   const [group, setgroup] = useState(false);
   const { user, selectedChat, setselectedChat, chats, setchats } = ChatState();
-  console.log(selectedChat);
+  const [messages, setmessages] = useState([]);
+  const [newMessage, setnewMessage] = useState()
 
   const handleProfile = ()=>{
     setShowProfile(true);

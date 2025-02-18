@@ -201,13 +201,11 @@ const UpdateGroup = ({ fetchAgain, setfetchAgain, onClose }) => {
                             <input value={search} className='outline-none border-2 border-teal-200 h-10 px-3 w-3/4' placeholder='Add users to group' type="search" name="search" onChange={handleSearch} />
                             {searchResult && searchResult.length > 0 ? <div className='style h-28 w-3/4'>
                                 {searchResult.map((user, index) => (
-                                    <div className='flex gap-2 mb-3 px-2 py-1 rounded-xl w-full bg-teal-200 cursor-pointer hover:bg-teal-300 hover:px-1' key={index} onClick={() => { handleAddUser(user) }}>
+                                    <div className='flex items-center gap-2 mb-3 px-2 py-1 rounded-xl w-full bg-teal-200 cursor-pointer hover:bg-teal-300 hover:px-1' key={index} onClick={() => { handleAddUser(user) }}>
                                         <img className='h-12 rounded-full' src={user.pic} alt="" />
-                                        <div className='w-full'>
                                             {user.name}
-                                            <br />
-                                            {user.email}
-                                        </div>
+                                        {/* <div className='w-full'>
+                                        </div> */}
                                     </div>
                                 ))}
                             </div> :
