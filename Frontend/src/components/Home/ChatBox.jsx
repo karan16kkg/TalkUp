@@ -10,7 +10,7 @@ import UpdateGroup from './UpdateGroup';
 import ScrollableChat from './ScrollableChat';
 import io from 'socket.io-client'
 
-const ENDPOINT = "https://chat-room-utqc.onrender.com"
+const ENDPOINT = "https://chat-room-utqc.onrender.com/";
 var socket, selectesChatCompare;
 
 const ChatBox = ({ fetchAgain, setfetchAgain }) => {
@@ -33,7 +33,7 @@ const ChatBox = ({ fetchAgain, setfetchAgain }) => {
   }
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = io(ENDPOINT, { transports: ["websocket"] });
     socket.emit("setup", user);
     socket.on("connected", () => setsocketConnected(true))
     socket.on("typing", () => setisTyping(true));

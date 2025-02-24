@@ -26,7 +26,8 @@ const server = app.listen(port,()=>{
 const io = require("socket.io")(server,{
     pingTimeout:6000,
     cors:{
-        origin:"https://talk-up-lac.vercel.app/",
+        origin: ["https://talk-up-lac.vercel.app", "https://chat-room-utqc.onrender.com"],
+        methods: ["GET", "POST"]
     }
 })
 
