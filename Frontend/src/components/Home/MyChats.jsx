@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getImage, getSender } from "../../config/ChatLogics";
 import "./MyChats.css"
 import GroupChat from "./GroupChat";
+import Notification from "./Notification";
 
 const MyChats = ({ fetchAgain }) => {
   const { user, selectedChat, setselectedChat, chats, setchats } = ChatState();
@@ -14,6 +15,7 @@ const MyChats = ({ fetchAgain }) => {
   const [search, setsearch] = useState("")
   const [searchResult, setsearchResult] = useState([])
   const [group, setgroup] = useState(false)
+  const [isnotification, setisnotification] = useState(false)
 
   const handleProfile = () => {
     setShowProfile(true);
@@ -110,7 +112,9 @@ const MyChats = ({ fetchAgain }) => {
     setgroup(true);
   }
 
-  console.log(chats);
+  const handleNotification = ()=>{
+    setisnotification(true);
+  }
 
   return (
     <>
@@ -130,11 +134,12 @@ const MyChats = ({ fetchAgain }) => {
       <div className={`w-full md:w-1/3 lg:1/3 ${selectedChat ? "hidden md:block lg:block" : "block"} relative`}>
         {showProfile && <Profile user1={user} onClose={() => setShowProfile(false)} />}
         {group && <GroupChat onClose={() => setgroup(false)} />}
+        {isnotification && <Notification onClose={()=>setisnotification(false)}/>}
         <div className="h-36 bg-teal-400 mt-0 rounded-3xl">
           <div className="flex gap-4 pt-2 ml-2 items-center relative">
             <img className="h-12 rounded-full border-2 border-teal-700" src={user.pic} alt="User" />
             <span className="text-2xl cursor-pointer" onClick={handleProfile}>{user.name}</span>
-            <img className="absolute right-10" src="notification.svg" alt="notification" />
+              <img className="absolute right-10 cursor-pointer" onClick={handleNotification} src="notification.svg" alt="notification" />
           </div>
 
           <div className="w-full mt-7 flex justify-center relative items-center">

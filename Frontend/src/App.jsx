@@ -7,6 +7,8 @@ import Chat from './components/Home/Chat'
 import Profile from './components/Home/Profile'
 import GroupChat from './components/Home/GroupChat'
 import UpdateGroup from './components/Home/UpdateGroup'
+import ScrollableChat from './components/Home/ScrollableChat'
+import Notification from './components/Home/Notification'
 function App() {
 
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/group' element={<GroupChat/>}></Route>
         <Route path='/updategroup' element={<UpdateGroup/>}></Route>
+        <Route path='/scrollChat' element={<ScrollableChat/>}></Route>
+        <Route path='/notification' element={<Notification/>}></Route>
       </Routes>
 
     </>

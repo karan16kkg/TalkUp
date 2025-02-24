@@ -19,6 +19,56 @@ app.use("/message",message)
 //     res.send("Hello");
 // })
 
-app.listen(port,()=>{
+const server = app.listen(port,()=>{
     console.log(`Server is running on port : ${port}`)
+})
+
+const io = require("socket.io")(server,{
+    pingTimeout:6000,
+    cors:{
+        origin:"https://talk-up-lac.vercel.app/",
+    }
+})
+
+io.on("connection",(socket)=>{
+    console.log("connected to socket.io")
+
+    socket.on("setup", (userData)=>{
+        socket.join(userData._id)
+        socket.emit("connected")
+    })
+
+    socket.on("join chat",(room)=>{
+        socket.join(room)
+        console.log("User joined room: "+ room)
+    })
+
+    socket.on("typing",(room)=>{
+        socket.to(room).emit("typing")
+    })
+
+    socket.on("stop typing",(room)=>{
+        socket.in(room).emit("stop typing")
+    })
+
+    socket.on("new Message",(newMessageReceived)=>{
+        const chat = newMessageReceived.chat;
+
+        if(!chat){
+            return console.log("Chat.users not defined");
+        }
+
+        chat.users.forEach((user)=>{
+            if(user._id == newMessageReceived.sender._id){
+                return;
+            }
+
+            socket.in(user._id).emit("message received",newMessageReceived);
+        })
+    })
+
+    socket.off("setup",()=>{
+        console.log("User Disconnected")
+        socket.leave(userData._id)
+    })
 })

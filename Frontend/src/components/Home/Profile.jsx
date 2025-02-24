@@ -11,7 +11,7 @@ const Profile = ({ user1, onClose }) => {
     }
     return (
         <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
-            <div className="bg-white w-5/6 md:w-1/3 lg:w-1/3 rounded-lg p-6 relative">
+            <div className="bg-white full md:w-1/3 lg:w-1/3 rounded-lg p-6 relative">
                 <button className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-3xl" onClick={onClose}> ✕ </button>
                 <h2 className="text-4xl font-semibold mb-4 flex justify-center">Profile</h2>
                 <div className="flex flex-col gap-4 items-center">

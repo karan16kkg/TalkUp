@@ -5,7 +5,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const UpdateGroup = ({ fetchAgain, setfetchAgain, onClose }) => {
+const UpdateGroup = ({ fetchAgain, setfetchAgain,fetchMessages, onClose }) => {
     const { user, selectedChat, setselectedChat } = ChatState();
     const [groupName, setgroupName] = useState("")
     const [search, setsearch] = useState("")
@@ -147,6 +147,7 @@ const UpdateGroup = ({ fetchAgain, setfetchAgain, onClose }) => {
             .then((response)=>{
                 user1._id == user._id?setselectedChat():setselectedChat(response.data);
                 setfetchAgain(!fetchAgain)
+                fetchMessages();
             })
         }
         catch(error){
